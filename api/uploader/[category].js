@@ -1,4 +1,4 @@
-const formidable = require('formidable');
+const formidableLib = require('formidable');
 const fs = require('fs/promises');
 const { validateFile, genId, uploadToGithub, publicUrl } = require('../_lib/cdn');
 
@@ -8,8 +8,25 @@ module.exports.config = {
   }
 };
 
+function createFormidable() {
+  if (typeof formidableLib === 'function') {
+    return formidableLib({ multiples: false, keepExtensions: true });
+  }
+
+  if (typeof formidableLib.formidable === 'function') {
+    return formidableLib.formidable({ multiples: false, keepExtensions: true });
+  }
+
+  if (typeof formidableLib.IncomingForm === 'function') {
+    return new formidableLib.IncomingForm({ multiples: false, keepExtensions: true });
+  }
+
+  throw new Error('Formidable module tidak valid.');
+}
+
 function parseForm(req) {
-  const form = formidable({ multiples: false, keepExtensions: true });
+  const form = createFormidable();
+
   return new Promise((resolve, reject) => {
     form.parse(req, (err, fields, files) => {
       if (err) return reject(err);
@@ -27,13 +44,17 @@ function getSingleFile(files) {
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
-    return res.status(405).json({ status: false, message: 'Method tidak diizinkan.' });
+    return res.status(405).json({
+      status: false,
+      message: 'Method tidak diizinkan.'
+    });
   }
 
   try {
     const category = String(req.query.category || '').toLowerCase();
     const { files } = await parseForm(req);
     const file = getSingleFile(files);
+
     const { cfg, size, ext } = validateFile(category, file);
 
     const id = genId(cfg.prefix);
