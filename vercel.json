@@ -1,7 +1,12 @@
 {
-  "functions": {
-    "api/**/*.js": {
-      "maxDuration": 60
+  "rewrites": [
+    {
+      "source": "/api/uploader/:category/:file",
+      "destination": "https://ymwjzttutktscbre.public.blob.vercel-storage.com/:category/:file"
+    },
+    {
+      "source": "/api/downloader/tiktok-video/:file",
+      "destination": "https://ymwjzttutktscbre.public.blob.vercel-storage.com/tiktok-video/:file"
     }
-  }
+  ]
 }
