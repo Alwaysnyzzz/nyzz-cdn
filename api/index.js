@@ -1,7 +1,7 @@
 module.exports = async function handler(req, res) {
   return res.status(200).json({
     status: true,
-    message: 'Nyzz CDN Uploader aktif.',
+    message: 'Api Hidup Silahkan Mulai Upload',
     endpoints: {
       image: '/api/uploader/image',
       video: '/api/uploader/video',
