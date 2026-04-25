@@ -7,6 +7,10 @@
     {
       "source": "/api/downloader/tiktok-video/:file",
       "destination": "https://ymwjzttutktscbre.public.blob.vercel-storage.com/tiktok-video/:file"
+    },
+    {
+      "source": "/api/downloader/tiktok-audio/:file",
+      "destination": "https://ymwjzttutktscbre.public.blob.vercel-storage.com/tiktok-audio/:file"
     }
   ]
 }
