@@ -19,6 +19,14 @@
     {
       "source": "/api/downloader/tiktok-audio/:file",
       "destination": "https://ymwjzttutktscbre.public.blob.vercel-storage.com/tiktok-audio/:file"
+    },
+    {
+      "source": "/api/downloader/youtube-video/:file",
+      "destination": "https://ymwjzttutktscbre.public.blob.vercel-storage.com/youtube-video/:file"
+    },
+    {
+      "source": "/api/downloader/youtube-audio/:file",
+      "destination": "https://ymwjzttutktscbre.public.blob.vercel-storage.com/youtube-audio/:file"
     }
   ]
 }
