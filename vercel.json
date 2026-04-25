@@ -1,8 +1,16 @@
 {
   "rewrites": [
     {
-      "source": "/api/uploader/:category/:file",
-      "destination": "https://ymwjzttutktscbre.public.blob.vercel-storage.com/:category/:file"
+      "source": "/api/uploader/image/:file",
+      "destination": "https://ymwjzttutktscbre.public.blob.vercel-storage.com/image/:file"
+    },
+    {
+      "source": "/api/uploader/video/:file",
+      "destination": "https://ymwjzttutktscbre.public.blob.vercel-storage.com/video/:file"
+    },
+    {
+      "source": "/api/uploader/audio/:file",
+      "destination": "https://ymwjzttutktscbre.public.blob.vercel-storage.com/audio/:file"
     },
     {
       "source": "/api/downloader/tiktok-video/:file",
